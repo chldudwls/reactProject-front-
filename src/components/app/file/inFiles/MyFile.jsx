@@ -39,6 +39,7 @@ export default function MyFile({ isShared }) {
         console.log("드라이브데이터", driveData); // 데이터 내용 확인
         const filteredData = driveData.filter(file => file && file.size > 0);
 
+        // 토탈 사이즈 구하는 식
         const totalSize = filteredData.reduce((sum, file) => sum + parseFloat(file.size || 0), 0);
 
 
@@ -83,7 +84,7 @@ export default function MyFile({ isShared }) {
       console.log("최상위 폴더로 돌아갑니다.");
       getDriveData();  // 최상위 폴더의 자식 폴더 불러오기
       setCurrentPath([null]);  // 경로를 최상위로 초기화
-      
+
     } else {
       // 이전 폴더의 자식들을 불러오는 함수
       const fetchParentChildFolders = async () => {
@@ -104,10 +105,8 @@ export default function MyFile({ isShared }) {
   }
 
 
-  // 추가: useEffect로 currentPath 상태가 변경된 후 반영
   useEffect(() => {
     console.log("currentPath 상태가 변경되었습니다:", currentPath);
-    // 필요한 동작 (예: URL 변경, 데이터 갱신 등)을 여기서 처리할 수 있습니다.
   }, [currentPath]);  // currentPath가 변경될 때마다 실행
 
 
